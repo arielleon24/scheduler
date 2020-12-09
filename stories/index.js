@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "index.scss";
 
 import { storiesOf } from "@storybook/react";
@@ -140,9 +140,25 @@ storiesOf("InterviewerList", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
-  .add("Appointment", () => <Appointment />)
+  .add("Appointment", () => < Appointment />)
   .add("Header", () => <Header time="12pm" />)
-  .add("Empty", ()=> <Empty onAdd={action("onAdd")}/>)
+  .add("Empty", ()=> (<Empty onAdd={action("onAdd")}/>))
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="12pm" />
+      <Appointment id="last" time="1pm" />
+    </Fragment>
+  ))
+  .add("Appointment Booked", () => (
+  <Fragment>
+    <Appointment
+      id={1}
+      time="12pm"
+      interview={{ student: "Lydia Miller-Jones", interviewer }}
+    />
+    <Appointment id="last" time="1pm" />
+  </Fragment>
+))
   .add("Show", ()=> <Show onEdit={action("onEdit")} onDelete={action("onDelete")}/>)
   .add("Confirm", ()=> <Confirm message="Delete the appointment?" onCancel={action("onCancel")} onConfirm={action("onConfirm")}/>)
   .add("Saving", ()=> <Status message="Saving"/>)
