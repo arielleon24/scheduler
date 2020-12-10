@@ -159,7 +159,7 @@ storiesOf("InterviewerList", module)
     <Appointment id="last" time="1pm" />
   </Fragment>
 ))
-  .add("Show", ()=> <Show onEdit={action("onEdit")} onDelete={action("onDelete")}/>)
+  .add("Show", ()=> <Show student="Nameless" interviewer={interviewer} onEdit={action("onEdit")} onDelete={action("onDelete")}/>)
   .add("Confirm", ()=> <Confirm message="Delete the appointment?" onCancel={action("onCancel")} onConfirm={action("onConfirm")}/>)
   .add("Saving", ()=> <Status message="Saving"/>)
   .add("Deleting", ()=> <Status message="Deleting"/>)
