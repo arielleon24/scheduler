@@ -17,6 +17,7 @@ export function getInterview(state, interview) {
       if (state.appointments[appId].interview.student === interview.student) {
         result.student = interview.student;
         result.interviewer = state.interviewers[interview.interviewer];
+        console.log(result)
         return result;
       }
     }
