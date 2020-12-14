@@ -1,17 +1,44 @@
-import React, { Fragment } from "react";
+import React from "react";
+import "components/Appointment/styles.scss";
 
-import "components/Appointment/styles.scss"
-import Show from "./Show.js";
-import Header from "./Header.js";
-import Empty from "./Empty.js";
+import Header from "components/Appointment/Header.js";
+import Empty from "components/Appointment/Empty.js";
+import Show from "components/Appointment/Show.js";
+import Form from "components/Appointment/Form.js";
 
+import useVisualMode from "hooks/useVisualMode";
 
-export default function Appointment(props){
-return (
-  <article className="appointment">
-  <Header time={props.time}></Header>
-  {props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer}></Show>: <Empty></Empty>}
-  </article>
-) 
+export default function Appointment(props) {
+
+  const EMPTY = "EMPTY";
+  const SHOW = "SHOW";
+  const CREATE = "CREATE";
+
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW : EMPTY
+  );
+
+  return (
+    
+    <article className="appointment">
+     <Header time={props.time} />
+     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+     {mode === SHOW && (
+       <Show
+         student={props.interview.student}
+         interviewer={props.interview.interviewer}
+       />
+     )}
+
+     {mode === CREATE && (
+     <Form 
+      interviewers={getInterviewersForDay}
+      onCancel={back}
+      onSave={[]}
+     />
+     )}
+    </article>
+
+  );
 
 }

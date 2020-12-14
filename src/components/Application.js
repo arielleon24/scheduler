@@ -4,46 +4,7 @@ import axios from 'axios';
 import "components/Application.scss";
 import Appointment from "components/Appointment"
 import DayList from "components/DayList";
-import {getAppointmentsForDay, getInterview } from 'helpers/selectors.js'
-
-// const appointments = [
-//   {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Señor Bros",
-//       interviewer: {
-//         id: 5,
-//         name: "Sven Jones",
-//         avatar: "https://i.imgur.com/twYrpay.jpg",
-//       }
-//     }
-//   }, 
-//   {
-//     id: 3,
-//     time: "2pm",
-//   }, 
-//   {
-//     id: 4,
-//     time: "3pm",
-//     interview: {
-//       student: "The nameless Student",
-//       interviewer: {
-//         id: 1,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   }, 
-//   {
-//     id: 5,
-//     time: "4pm",
-//   }
-// ];
+import {getAppointmentsForDay, getInterview, getInterviewersForDay } from 'helpers/selectors.js'
 
 export default function Application(props) {
   const setDay = day => setState({ ...state, day });
