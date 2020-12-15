@@ -5,6 +5,7 @@ import "components/Application.scss";
 import Appointment from "components/Appointment"
 import DayList from "components/DayList";
 import {getAppointmentsForDay, getInterview, getInterviewersForDay } from 'helpers/selectors.js'
+import Empty from "./Appointment/Empty";
 
 export default function Application(props) {
   const setDay = day => setState({ ...state, day });
@@ -32,20 +33,61 @@ export default function Application(props) {
       setState(prev => (setState({ ...prev, days, appointments, interviewers })));
     })
   }, [])
+
+  function bookInterview(id, interview) {
+    
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    }; /// Creation of appointment object
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }; /// Creation of appointments object
+
+    console.log("THIS IS ID", id)
+    console.log("THIS IS interview", interview)
+
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    .then(() => {
+      setState({
+        ...state,
+        appointments
+      });
+    })
+    
+  }
   
+  function cancelInterview (id) {
+
+    const appointments = state.appointments;
+    const appointment = appointments[id];
+
+    return axios.delete(`/api/appointments/${id}`)
+      .then(()=> {
+        appointment.interview = null; 
+        setState({...state, appointments});
+      });
+  }
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const appointmentList = dailyAppointments.map((appointment) => {
-  const interview = getInterview(state, appointment.interview);
+    const interview = getInterview(state, appointment.interview);
+    const interviewersForDay = getInterviewersForDay(state, state.day)
 
     return ( 
-    <Appointment 
-      key={appointment.id} 
-      id={appointment.id}
-      time={appointment.time}
-      interview={interview}
-    />
+      <Appointment 
+        key={appointment.id} 
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+        interviewers={interviewersForDay}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
+      />
     )
-})
+  })
 
 
   return (
