@@ -66,9 +66,9 @@ export default function useApplicationData() {
 
 
   useEffect(() => {
-    const promise1 = axios.get('http://localhost:8001/api/days');
-    const promise2 = axios.get('http://localhost:8001/api/appointments');
-    const promise3 = axios.get('http://localhost:8001/api/interviewers');
+    const promise1 = axios.get('/api/days');
+    const promise2 = axios.get('api/appointments');
+    const promise3 = axios.get('/api/interviewers');
 
     Promise.all([promise1, promise2, promise3])
       .then((all) => {
