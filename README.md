@@ -1,4 +1,5 @@
 # Interview Scheduler
+The Scheduler is an interview appointment creation tool. It uses REACT to create a responsive Single page app. 
 
 ## Setup
 
