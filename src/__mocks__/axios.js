@@ -81,5 +81,27 @@ export default {
       })
     }
 
+  }),
+
+  put: jest.fn(url => {
+    return Promise.resolve({
+      status: 200,
+      statusText: "OK"
+    });
+  }),
+
+  delete: jest.fn(url => {
+    return Promise.resolve({
+      status: 200,
+      statusText: "OK"
+    });
+  }),
+
+  delete: jest.fn(url => {
+    return Promise.reject({
+      status: 400,
+      statusText: "OK"
+    });
   })
+  
 }
