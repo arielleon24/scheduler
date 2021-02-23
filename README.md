@@ -6,6 +6,12 @@ Technologies used include React, SASS, WebPack, Babel, Axios client-side, Node.j
 
 Interview Scheduler is not suitable for real-world production use and is only for demonstration and educational purposes.
 
+## Screenshots
+
+!["CREATE"](https://github.com/arielleon24/scheduler/blob/master/public/images/Scheduler1.gif?raw=true)
+!["EDIT"](https://github.com/arielleon24/scheduler/blob/master/public/images/Scheduler%20edit.gif?raw=true)
+!["DELETE"](https://github.com/arielleon24/scheduler/blob/master/public/images/scheduler%20delete.gif)
+
 ## Setup
 
 Install dependencies with `npm install`.
